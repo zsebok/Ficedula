@@ -1,0 +1,4 @@
+recording,number_sylls,repertoiresize,number_song,songinterval.mean,songinterval.sd,songinterval.median,songinterval.min,songinterval.max,songduration.mean,songduration.sd,songduration.median,songduration.min,songduration.max
+rec1,42,15,4,5.6853,1.1073,5.8789,4.4939,6.6831,3.2826,0.53993,3.5166,2.4784,3.6189
+rec2,62,26,5,8.4157,1.1118,8.5378,6.9431,9.644,3.6335,0.85066,3.575,2.727,4.5328
+rec3,72,38,5,7.8454,1.9821,7.9634,5.4329,10.0219,3.983,0.9371,3.8382,3.1583,5.5197
