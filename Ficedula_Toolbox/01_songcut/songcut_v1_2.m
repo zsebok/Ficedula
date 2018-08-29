@@ -153,14 +153,17 @@ handles.csakfilenev=csakfilenev;
 
 %%%%[handles.adat,Fs]=wavread(filenev);
 
-[siz,Fs]=wavread(filenev,'size');
+%[siz,Fs]=wavread(filenev,'size');
+info1=audioinfo(filenev);
+siz=info1.TotalSamples;
+
 handles.adatsize=siz(1);
 n1=floor(linspace(1,siz(1),1000));
 n1l=n1(2)-n1(1);
 y=[];
 %tic
 for i=n1(1:end-1)
-    [y1,Fs]=wavread(filenev,[i i+n1l]);
+    [y1,Fs]=audioread(filenev,[i i+n1l]);
     y=[y;max(y1);min(y1)];
 end
 %toc
@@ -679,7 +682,7 @@ function kezdorajz(hObject,eventdata,handles)
 x1=floor(handles.x1);
 x2=floor(handles.x2);
 
-handles.adat=wavread(handles.filenev,[x1 x2]);
+handles.adat=audioread(handles.filenev,[x1 x2]);
 
 handles.adat=(handles.adat/max(handles.adat))*0.7;
 

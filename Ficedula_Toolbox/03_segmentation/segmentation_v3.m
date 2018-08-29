@@ -145,7 +145,7 @@ handles.filenev=filenev;
 
 handles.csakfilenev=csakfilenev;
 
-[adat,Fs]=wavread(filenev);
+[adat,Fs]=audioread(filenev);
 
 %% checking for stereo
 if size(adat,2)>1

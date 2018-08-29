@@ -25,7 +25,7 @@ for syll=1:length(v)
     
     db=database_syllables(v(syll),:);
     filename=[db{2} '\' db{1}];
-    [y,Fs]=wavread([path_songs '\' filename]);
+    [y,Fs]=audioread([path_songs '\' filename]);
     
     n=n+1;
     
