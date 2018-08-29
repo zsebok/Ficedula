@@ -381,7 +381,7 @@ set(main.edit_path_songs,'string',main.path_songs)
             
             main.al1_sylls=1:length(main.data);
             sylls=1:(min(main.al1_window,main.al1_sylls));
-            'hey'
+            
             sylls=main.al1_sylls;
             
             'nincs régi adat'
@@ -467,7 +467,7 @@ set(main.edit_path_songs,'string',main.path_songs)
             
             h=surf(main.ac2,main.data(main.al1_selected).P,'edgecolor','none'); view(main.ac2,2);%axis(main.ac2,'off')
             set(h,'HitTest','off')
-            % 'hey'
+           
             set(main.ac2,'ButtonDownFcn',@ac2_down,'xticklabel',[],'yticklabel',[],'color',main.backcolor)
            
             
@@ -620,7 +620,7 @@ set(main.edit_path_songs,'string',main.path_songs)
     end
 
     function ar2_forw_callback(src,evnt)
-        'hey'
+        
         main.ar2_num=main.ar2_num+main.ar2_window-1;
         
         if main.ar2_num+main.ar2_window-1>length(main.ar2_sylls)
