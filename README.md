@@ -10,5 +10,9 @@ Journal of Ornithology, 159(4):1105-1111. https://doi.org/10.1007/s10336-018-158
 
 Future plans:
 
-1. change wavread to auiodread function to be compatible for Matlab versions after 2013
-2. povide GUI for selecting measurement parameters for computer-aided clustering
+1. provide GUI for selecting measurement parameters for computer-aided clustering
+2. provide GUI for spectrogram settings 
+
+Solved Issues:
+
+1. wavread, wavrite changed to audioread, audioinfo and audiowrite (29.08.2018)
