@@ -12,6 +12,7 @@ Future plans:
 
 1. provide GUI for selecting measurement parameters for computer-aided clustering
 2. provide GUI for spectrogram settings 
+3. translate the comments into English
 
 Solved Issues:
 
