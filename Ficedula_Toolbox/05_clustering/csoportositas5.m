@@ -73,7 +73,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         %%% axes %%%%%%%%%%%%%%%%%%%%%%
         main.al1=axes('units','normalized','position',[0.01 0.08 0.4 0.75],...
             'xtick',[],'ytick',[],'ButtonDownFcn',@al1_down,'color',main.backcolor);
-        %  uistack(main.al1,'top')
+
         main.ar1=axes('units','normalized','position',[0.58 0.675 0.4 0.2],...
             'xtick',[],'ytick',[],'color',main.backcolor);
         main.ar2=axes('units','normalized','position',[0.58 0.375 0.4 0.2],...
@@ -100,11 +100,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         main.but_ind_back=uicontrol('style','pushbutton','units','normalized','position',[0.05 0.88 0.05 0.03],...
             'string','<','callback',{@ind_back_callback});
         
-%         main.but_a1_back=uicontrol('style','pushbutton','units','normalized','position',[0.01 0.03 0.05 0.04],...
-%             'string','<','callback',{@al1_back_callback});
-%         main.but_a1_forw=uicontrol('style','pushbutton','units','normalized','position',[0.36 0.03 0.05 0.04],...
-%             'string','>','callback',{@al1_forw_callback});
-%         
+
         
        main.but_a1_back=uicontrol('style','pushbutton','units','normalized','position',[0.07 0.03 0.05 0.04],...
             'string','<<','callback',{@al1_back_callback});
@@ -227,34 +223,6 @@ set(main.edit_path_songs,'string',main.path_songs)
         
         set(main.text_ind,'string',[num2str(inds_num) '. ' inds{inds_num}]);
     end
-% 
-%     function al1_forw_callback(src,evnt)
-%         main.al1_num=main.al1_num+main.al1_window;
-%         
-%         if main.al1_num+main.al1_window-1>length(main.al1_sylls)
-%             main.al1_num=length(main.al1_sylls)-main.al1_window+1;
-%         end
-%         if main.al1_num<0; main.al1_num=1;end
-%         
-%         sylls=main.al1_num:min(main.al1_num+main.al1_window-1,length(main.al1_sylls));
-%         sylls_db=main.al1_sylls(sylls);
-%         main.al1_sylls_inwindow2=sylls_db;
-%         %sylls_db
-%         draw_al1(sylls_db)
-%         refresh_labels
-%     end
-% 
-%     function al1_back_callback(src,evnt)
-%         main.al1_num=main.al1_num-main.al1_window;
-%         if main.al1_num<0; main.al1_num=1;end
-%         
-%         sylls=main.al1_num:min(main.al1_num+main.al1_window-1,length(main.al1_sylls));
-%         
-%         sylls_db=main.al1_sylls(sylls);
-%         main.al1_sylls_inwindow2=sylls_db;
-%         draw_al1(sylls_db)
-%         refresh_labels
-%     end
 
 
     function al1_forw_callback(src,evnt)
@@ -268,7 +236,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         sylls=main.al1_num:min(main.al1_num+main.al1_window-1,length(main.al1_sylls));
         sylls_db=main.al1_sylls(sylls);
         main.al1_sylls_inwindow2=sylls_db;
-        %sylls_db
+      
         draw_al1(sylls_db)
         refresh_labels
     end
@@ -297,7 +265,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         sylls=main.al1_num:min(main.al1_num+main.al1_window-1,length(main.al1_sylls));
         sylls_db=main.al1_sylls(sylls);
         main.al1_sylls_inwindow2=sylls_db;
-        %sylls_db
+     
         draw_al1(sylls_db)
         refresh_labels
     end
@@ -333,10 +301,10 @@ set(main.edit_path_songs,'string',main.path_songs)
             main.act_cat=1;
             main.al1_sylls
             inds{inds_num}
-            % main.al1_sylls=1;
+          
             
             if ~isempty(main.al1_sylls)
-                %draw al1
+             
                 sylls=1:min(length(main.al1_sylls),main.al1_window);
                 
                 syllsdb=main.al1_sylls(sylls);
@@ -351,9 +319,9 @@ set(main.edit_path_songs,'string',main.path_songs)
             sylls=1:min(length(main.ar2_sylls),main.ar2_window);
             syllsdb=main.ar2_sylls(sylls);
             draw_ar2(syllsdb)
-            %syllsdb
+       
             main.ar2_sylls_inwindow2=sylls;
-            %sylls
+     
             
             %draw ar3
             main.ar3_num=1;
@@ -368,14 +336,14 @@ set(main.edit_path_songs,'string',main.path_songs)
             
             %draw ac1
             syll=main.cat{main.act_cat,1};
-            %axes(main.ac1);
+           
             surf(main.ac1,main.data(syll).P,'edgecolor','none'); view(main.ac1,2); %axis(main.ac1, 'off')
             set(main.text_ac1,'string',['Actual category: ' num2str(main.act_cat)]);
             lim_eq(main.al1,main.ac1)
             set(main.ac1,'xticklabel',[],'yticklabel',[],'color',main.backcolor)
             grid on
             set(main.ac1,'layer','top')
-            'új adat betöltve'
+            'new data is loaded'
         catch err
             err
             
@@ -400,10 +368,10 @@ set(main.edit_path_songs,'string',main.path_songs)
     function draw_al1(sylls)
         [main.al1_P3 main.al1_P3_2]=csoportositas_abratabla3(main.data,main.matrix,sylls,main.al1_row);
         main.al1_sylls_inwindow=sylls;
-        %axes(main.al1)
+    
         main.h=surf(main.al1,main.al1_P3,'edgecolor','none');
         view(main.al1,2)
-        %axis off
+      
         set(main.h,'HitTest','off')
         set(main.al1,'ButtonDownFcn',@al1_down,'xtick',[],'ytick',[],'color',main.backcolor);
         set(main.al1,'xlim',[0 500])
@@ -413,10 +381,10 @@ set(main.edit_path_songs,'string',main.path_songs)
     function draw_ar2(sylls)
         [main.ar2_P3 main.ar2_P3_2]=csoportositas_abratabla3(main.data,main.matrix,sylls,main.ar2_row);
         main.ar2_sylls_inwindow=sylls;
-        %axes(main.ar2)
+     
         h=surf(main.ar2,main.ar2_P3,'edgecolor','none');
         view(main.ar2,2)
-        %axis off
+
         
         lim_eq(main.al1,main.ar2)
         set(h,'HitTest','off')
@@ -426,11 +394,11 @@ set(main.edit_path_songs,'string',main.path_songs)
     function draw_ar3(sylls)
         [main.ar3_P3 main.ar3_P3_2]=csoportositas_abratabla3(main.data,main.matrix,sylls,main.ar3_row);
         main.ar3_sylls_inwindow=sylls;
-        %axes(main.ar3)
+      
         h=surf(main.ar3,main.ar3_P3,'edgecolor','none');
         view(main.ar3,2)
         lim_eq(main.al1,main.ar3)
-        %axis off
+        
         set(h,'HitTest','off')
         set(main.ar3,'ButtonDownFcn',@ar3_down,'xtick',[],'ytick',[],'color',main.backcolor);
     end
@@ -438,20 +406,18 @@ set(main.edit_path_songs,'string',main.path_songs)
     function draw_ar1(sylls)
         [main.ar1_P3 main.ar1_P3_2]=csoportositas_abratabla3(main.data,main.matrix,sylls,main.ar1_row);
         main.ar1_sylls_inwindow=sylls;
-        %axes(main.ar1)
+   
         h=surf(main.ar1,main.ar1_P3,'edgecolor','none');
         view(main.ar1,2)
         lim_eq(main.al1,main.ar1)
-        %axis off
+ 
         set(h,'HitTest','off')
         set(main.ar1,'ButtonDownFcn',@ar1_down,'xtick',[],'ytick',[],'color',main.backcolor);
     end
 
     function al1_down(src,evnt)
         
-        %main.al1_sylls_inwindow
-        % 'al1_down'
-        
+              
         posxy=get(src,'CurrentPoint');
         try
             selected0=main.al1_P3_2(floor(posxy(1,2)),floor(posxy(1,1)));
@@ -484,7 +450,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         else
             main.al1_selected=[];
             cla(main.ac2)
-            %axis(main.ac2,'off')
+   
             set(main.ac1,'xtick',[],'ytick',[],'color',main.backcolor)
         end
         
@@ -518,7 +484,7 @@ set(main.edit_path_songs,'string',main.path_songs)
             
         end
         
-        %drawing
+        
         refresh_labels
     end
 
@@ -532,15 +498,15 @@ set(main.edit_path_songs,'string',main.path_songs)
     function addtocategory_callback(src,evnt)
         if ~isempty(main.al1_selected)
             
-            if isempty(main.act_cat) %ha nincs kategória kiválasztva
+            if isempty(main.act_cat) 
                 
-                %új kat hozzáadása
+                %new category added
                 main.act_cat=size(main.cat,1)+1;
                 main.cat{main.act_cat,1}=main.al1_selected;
                 main.cat{main.act_cat,2}=main.al1_selected;
                 
                 
-                %rajzolás - categories ar2
+                %draw - categories ar2
                 main.ar2_sylls=vertcat(main.cat{:,1});
                 
                 catstodraw_end=main.act_cat;
@@ -548,7 +514,7 @@ set(main.edit_path_songs,'string',main.path_songs)
                 if catstodraw_start<1;catstodraw_start=1;end
                 draw_ar2(main.ar2_sylls(catstodraw_start:catstodraw_end))
                 
-            else %ha van kiálasztva kategória
+            else 
                 
                 catcontent=main.cat{main.act_cat,2};
                 catcontent_new=[catcontent;main.al1_selected];
@@ -558,21 +524,21 @@ set(main.edit_path_songs,'string',main.path_songs)
     
             %% 
             
-            %ar3-at frissíteni
+            %refresh ar3
             main.ar3_sylls=main.cat{main.act_cat,2};
             catstodraw_end=find(main.al1_selected==main.ar3_sylls);
             catstodraw_start=catstodraw_end-main.ar3_window+1;
             if catstodraw_start<1;catstodraw_start=1;end
             draw_ar3(main.ar3_sylls(catstodraw_start:catstodraw_end))
             
-            %% 0.8
+            %% 
             
-            %eltávolítani az aktuális syllabust
+            %remove actual syllable
             
             syll_to_remove=find(main.al1_selected==main.al1_sylls);
             main.al1_sylls(syll_to_remove)=[];
             
-            %% vajon rajta van-e al1-en?
+            %% 
             
             if any(main.al1_sylls_inwindow==main.al1_selected)
                 v0=find(main.al1_sylls_inwindow==main.al1_selected);
@@ -591,7 +557,7 @@ set(main.edit_path_songs,'string',main.path_songs)
                 hold(main.al1,'off')
                 
             end
-            %% 1.1 sec
+            %% 
             
           
             main.al1_selected=[];
@@ -599,10 +565,10 @@ set(main.edit_path_songs,'string',main.path_songs)
             set(main.text_ac2,'string','Actual syllable:');
             
           
-            %rajzolás - ac1-t frissíteni
+            %draw - refresh ac1
             syll=main.cat{main.act_cat,1};
-            %axes(main.ac1);
-            surf(main.ac1,main.data(syll).P,'edgecolor','none'); view(main.ac1,2); %axis(main.ac1, 'off')
+            
+            surf(main.ac1,main.data(syll).P,'edgecolor','none'); view(main.ac1,2); 
             set(main.text_ac1,'string',['Actual category: ' num2str(main.act_cat)]);
             lim_eq(main.al1,main.ac1)
             set(main.ac1,'xtick',[],'ytick',[],'color',main.backcolor)
@@ -630,7 +596,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         
         
         sylls=main.ar2_num:min(main.ar2_num+main.ar2_window-1,length(main.ar2_sylls));
-        %sylls
+     
         main.ar2_sylls_inwindow2=sylls;
         sylls_db=main.ar2_sylls(sylls);
         
@@ -641,9 +607,9 @@ set(main.edit_path_songs,'string',main.path_songs)
     function ar2_back_callback(src,evnt)
         main.ar2_num=main.ar2_num-main.ar2_window+1;
         if main.ar2_num<1; main.ar2_num=1;end
-        %al1_num=main.al1_num
+        
         sylls=main.ar2_num:min(main.ar2_num+main.ar2_window-1,length(main.ar2_sylls));
-        %sylls
+       
         sylls_db=main.ar2_sylls(sylls);
         main.ar2_sylls_inwindow2=sylls;
         draw_ar2(sylls_db)
@@ -673,7 +639,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         if main.ar3_num<1; main.ar3_num=1;end
        
         sylls=main.ar3_num:min(main.ar3_num+main.ar3_window-1,length(main.ar3_sylls));
-        %sylls
+  
         sylls_db=main.ar3_sylls(sylls);
         main.ar3_sylls_inwindow=sylls_db;
         draw_ar3(sylls_db)
@@ -683,10 +649,10 @@ set(main.edit_path_songs,'string',main.path_songs)
     function delsyllfromcat_callback(src,evnt)
         axes(main.ar3)
         go=1;
-       % while go==1
+   
             [x,y, but] = ginput(1);
             if but==1
-                selected0=main.ar3_P3_2(floor(y),floor(x)); %sorszam
+                selected0=main.ar3_P3_2(floor(y),floor(x)); 
                 
                 if ~isnan(selected0)
                     selectedsyll=main.ar3_sylls_inwindow(selected0);
@@ -725,7 +691,7 @@ set(main.edit_path_songs,'string',main.path_songs)
                         remove_cat(main.act_cat)
                         
                     else
-                        %ar3-at frissíteni
+                        %refresh ar3
                         catstodraw_start=1;
                         catstodraw_end=min(length(main.ar3_sylls),main.ar3_window);
                         
@@ -746,7 +712,7 @@ set(main.edit_path_songs,'string',main.path_songs)
     function delcat_callback(src,evnt)
         axes(main.ar2)
         go=1;
-        %while go==1
+      
         [x,y, but] = ginput(1);
         if but==1
             selected0=main.ar2_P3_2(floor(y),floor(x));
@@ -762,7 +728,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         else
             go=0;
         end
-        %end
+      
     end
     function remove_cat(selectedcat)
         
@@ -783,10 +749,10 @@ set(main.edit_path_songs,'string',main.path_songs)
         cla(main.ar1)
         
         
-        %rajzolás - categories ar2
+        %draw - categories ar2
         if ~isempty(main.cat)
             catstodraw_end=min(length(main.ar2_sylls),main.ar2_window);
-            catstodraw_start=1;%catstodraw_end-main.ar2_window+1;
+            catstodraw_start=1;
             draw_ar2(main.ar2_sylls(catstodraw_start:catstodraw_end))
         else
             cla(main.ar2)
@@ -821,7 +787,7 @@ set(main.edit_path_songs,'string',main.path_songs)
             
             set(main.text_ac1,'string',['Actual category: ' num2str(main.act_cat)]);
             
-            %ar3-at frissíteni
+            %refresh ar3
             main.ar3_sylls=main.cat{main.act_cat,2};
             catstodraw_start=1;
             catstodraw_end=min(length(main.ar3_sylls),main.ar3_window);
@@ -848,7 +814,7 @@ set(main.edit_path_songs,'string',main.path_songs)
             
             main.act_cat=selectedcat;
             syll=main.cat{selectedcat,1};
-            surf(main.ac1,main.data(syll).P,'edgecolor','none'); view(main.ac1,2);%axis(main.ac1,'off')
+            surf(main.ac1,main.data(syll).P,'edgecolor','none'); view(main.ac1,2);
             
             lim_eq(main.al1,main.ac1)
             
@@ -857,7 +823,7 @@ set(main.edit_path_songs,'string',main.path_songs)
             set(main.ac1,'layer','top')
             set(main.text_ac1,'string',['Actual category: ' num2str(main.act_cat)]);
             
-            %ar3-at frissíteni
+            %refresh ar3
             main.ar3_sylls=main.cat{main.act_cat,2};
             catstodraw_start=1;
             catstodraw_end=min(length(main.ar3_sylls),main.ar3_window);
@@ -975,7 +941,7 @@ end
         
         
         sylls=main.ar1_num:min(main.ar1_num+main.ar1_window-1,length(main.ar1_sylls));
-        %sylls
+     
         
         sylls_db=main.ar1_sylls(sylls);
         main.ar1_sylls_inwindow2=main.ar1_cats(sylls);
@@ -1000,7 +966,7 @@ end
             'menubar','none','Numbertitle','off','CloseRequestFcn',@closears);
         main.ars=axes('units','normalized','position',[0.01 0.07 0.98 0.9],...
             'xtick',[],'ytick',[],'color',main.backcolor);
-        surf(main.ars,main.data(main.al1_selected).P,'edgecolor','none'); view(main.ars,2);%axis(main.ac2,'off')
+        surf(main.ars,main.data(main.al1_selected).P,'edgecolor','none'); view(main.ars,2);
         
         set(main.ars,'xticklabel',[],'yticklabel',[],'color',main.backcolor)
         
@@ -1250,7 +1216,7 @@ end
             
             main.act_cat=selectedcat;
             syll=main.cat{selectedcat,1};
-            surf(main.ac1,main.data(syll).P,'edgecolor','none'); view(main.ac1,2);%axis(main.ac1,'off')
+            surf(main.ac1,main.data(syll).P,'edgecolor','none'); view(main.ac1,2);
             
             lim_eq(main.al1,main.ac1)
             set(main.ac1,'xticklabel',[],'yticklabel',[],'color',main.backcolor)
@@ -1259,7 +1225,7 @@ end
             
             set(main.text_ac1,'string',['Actual category: ' num2str(main.act_cat)]);
             
-            %ar3-at frissíteni
+            %refresh ar3
             main.ar3_sylls=main.cat{main.act_cat,2};
             catstodraw_start=1;
             catstodraw_end=min(length(main.ar3_sylls),main.ar3_window);
@@ -1295,7 +1261,7 @@ end
             
             set(main.text_ac1,'string',['Actual category: ' num2str(main.act_cat)]);
             
-            %ar3-at frissíteni
+            %refresh ar3
             main.ar3_sylls=main.cat{main.act_cat,2};
             catstodraw_start=1;
             catstodraw_end=min(length(main.ar3_sylls),main.ar3_window);

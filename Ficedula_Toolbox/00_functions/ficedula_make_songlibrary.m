@@ -1,5 +1,5 @@
 function ficedula_make_songlibrary(path_in,path_out,path_data,results_songcut_filename)
-%
+
 warning off
 load(results_songcut_filename)
 res=results_songcut;
@@ -9,7 +9,7 @@ for rec=1:length(res)
     file=res(rec).filenev;
     dir1=[path_out file(1:end-4)];
     mkdir(dir1)
-    %siz=wavread([path_in file],'size');
+    
     info1 = audioinfo([path_in file]);
     siz=info1.TotalSamples;
     
@@ -23,7 +23,7 @@ for rec=1:length(res)
         [y,Fs]=audioread([path_in file],[N1 N2]);
         
         filename_out=sprintf('%03d',song);
-        %wavwrite(y(:,1),Fs,[dir1 '\' file(1:end-4) '_' filename_out '.wav'])
+       
         audiowrite([dir1 '\' file(1:end-4) '_' filename_out '.wav'],y(:,1),Fs)
        
         songlibrary=[songlibrary;{dir1} {file} {[file(1:end-4) '_' filename_out '.wav']} {N1/Fs} {N2/Fs}];

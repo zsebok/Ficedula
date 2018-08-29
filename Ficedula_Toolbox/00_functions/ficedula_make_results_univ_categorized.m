@@ -1,12 +1,9 @@
 function ficedula_make_results_univ_categorized(path_data)
-%clear
-%path_data='data_folder\';
-%        params=ficedula_loadparams;
+
 %% collect categories of univ groups
 load([path_data 'database_syllables_measured_univ.mat'])
 data_all=database_syllables_measured_univ;
 
-%recs=(unique(data_all(:,2)))';
 data_all2=[];
 cat={};
 data_rec=data_all;
@@ -29,10 +26,6 @@ for i=1:size(data_all2,1)
 end
 results=data_all2;
 
-%results_categorized_univ_groups=results;
-%save results_categorized_univ_groups results_categorized_univ_groups
-
-%save([path_data 'results_categorized.mat'],'results_categorized')
 
 %% put univ categries into syllable table
 load([path_data 'database_syllables_measured_univ_allinfo.mat'])

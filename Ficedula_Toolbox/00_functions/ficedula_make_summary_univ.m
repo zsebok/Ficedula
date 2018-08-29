@@ -1,6 +1,4 @@
 function ficedula_make_summary_univ(path_data)
-%clear
-%path_data='data__folder\';
 
 %make summary table for categories
 load([path_data 'results_categorized_univ.mat'])

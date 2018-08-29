@@ -1,6 +1,4 @@
 function ficedula_make_summary_song(path_data)
-%clear
-%path_data='data_folder\';
 
 load([path_data 'results_categorized.mat'])
 load([path_data 'songlibrary.mat'])

@@ -1,9 +1,7 @@
 function ficedula_make_measurements(path_songs,path_data)
 
-%adatbázisból másolja a matrix-ban található mérési eredményeket!
 load([path_data 'database_syllables.mat'])
 
-%path_songs='c:\_munka\__project_toolbox\02_make_songlibrary\';
 col_start=5;
 col_end=6;
 col_minf=7;

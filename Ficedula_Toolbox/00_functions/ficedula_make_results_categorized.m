@@ -1,6 +1,4 @@
 function ficedula_make_results_categorized(path_data)
-%clear
-%path_data='data_folder\';
 
 load([path_data 'database_syllables_measured.mat'])
 

@@ -1,5 +1,4 @@
 function ficedula_univ_database_maker(path_data) 
-% function ficedula_univ_database_maker(path_data,results_categorized) 
 
 load([path_data 'results_categorized.mat'])
 data0=results_categorized;

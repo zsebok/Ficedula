@@ -66,7 +66,7 @@ else
 end
 
 warning off
-handles.mutato=0; %kezdo file sorszáma
+handles.mutato=0; 
 handles.xj1=[];
 handles.xj2=[];
 
@@ -76,7 +76,6 @@ handles.timewindow0=3; % starting maximum window length in sec
 handles.ylim_min=1000; %minimum frequency on spectrogram in Hz
 handles.ylim_max=12000; %maximum frequency on spectrogram in Hz
 
-%specgram(adat002,512,handles.Fs,hann(512),450); %xlim([x1 x2])
 
 handles.spec_fft=512;
 handles.spec_window=hann(512);
@@ -88,7 +87,7 @@ try
 catch
     
 end
-% Update handles structure
+
  set(handles.figure1,'CloseRequestFcn',@myclosefcn)
 guidata(hObject, handles);
 
@@ -151,10 +150,6 @@ handles.csakfilenev=csakfilenev;
 if size(adat,2)>1
     adat=adat(:,1);
 end
-
-
-
-
 
 
 %% normailizing
@@ -240,7 +235,7 @@ function playbutton_Callback(hObject, eventdata, handles)
 
 adat=handles.adat;
 Fs=handles.Fs;
-%handles.player=audioplayer(adat(x1:x2),Fs);
+
 handles.player=audioplayer(handles.adat(handles.x1:handles.x2),handles.Fs);
 
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -251,10 +246,6 @@ data1.cursor=cursor;
 data1.Fs=Fs; data1.adjust=str2num(get(handles.edit_adjust,'String'));
 set(handles.player, 'UserData', data1, 'TimerPeriod', 0.01, 'TimerFcn',@update_audio_position);
 set(handles.player, 'UserData', data1, 'StopFcn',@stop_audio);
-%set(handles.player, 'UserData', data1, ,@update_audio_position);
-
-%StopFcn
-%cursor=line([0 0],[-((max(s))*1.1),((max(s))*1.1)],'color','k');
 
 
 play(handles.player);
@@ -310,7 +301,7 @@ function jelolesbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%bal gomb
+
 mehet=0;
 while mehet==0
 [xi,yi,but] = ginput(1);
@@ -408,8 +399,8 @@ if hObject.isplaying, % only do this if playback is in progress
     currentx=(get(hObject, 'CurrentSample') / get(hObject,'SampleRate'));
  data = get(hObject,'UserData');
  
- %set(data.cursor,'XData',[currentx currentx]*data.Fs);% only x values change
-set(data.cursor,'XData',[currentx+data.adjust currentx+data.adjust]);% only x values change
+
+set(data.cursor,'XData',[currentx+data.adjust currentx+data.adjust]);
 
  end
  
@@ -636,10 +627,10 @@ handles.spec_fft=1024;
 handles.spec_window=hann(1024);
 handles.spec_overlap=900;
 
-%specgram(adat002,512,handles.Fs,hann(512),450); %xlim([x1 x2])
-specgram(adat002,handles.spec_fft,handles.Fs,handles.spec_window,handles.spec_overlap); %xlim([x1 x2])
 
-%S1=specgram(adat002,512,handles.Fs,hann(512),450); %xlim([x1 x2])
+specgram(adat002,handles.spec_fft,handles.Fs,handles.spec_window,handles.spec_overlap); 
+
+
 
 set(gca,'xtick',0.001:0.2:(x2-x1)/handles.Fs)
 set(gca,'xticklabel',floor(x1/handles.Fs*100)/100:0.2:x2/handles.Fs)
@@ -857,16 +848,13 @@ function button_path_Callback(hObject, eventdata, handles)
 % hObject    handle to button_path (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-%'c:\_munka\enekek\'
 
-%get(handles.edit_path,'string')
-%handles.konyvtar=get(handles.edit_path,'string');
 folders0=dir(get(handles.edit_path,'string'));
 folders1=folders0(3:end);
 folders2=folders1([folders1.isdir]);
 handles.folders=folders2;
 handles.folders_num=1;
-%handles.folders(handles.folders_num).name
+
 set(handles.text_dir,'string',handles.folders(handles.folders_num).name);
 guidata(hObject, handles);
 
@@ -947,16 +935,6 @@ function delete_all_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%[xi,yi,but] = ginput(1);
-
-%xi0=xi*handles.Fs+handles.x1;
-%mutato=0;
-% for i=1:length(handles.xj1)
-%     if handles.xj1(i)<xi0 && handles.xj2(i)>xi0
-%         mutato=i;
-%     end
-% end
-%if mutato~=0
     handles.xj1=[];
     handles.xj2=[];
     handles.yj1=[];
@@ -968,7 +946,7 @@ function delete_all_Callback(hObject, eventdata, handles)
     
   
     kezdorajz(hObject, eventdata, handles)
-%end
+
 guidata(hObject, handles);
 jelolesekfelvitele(hObject, eventdata, handles)
 
@@ -1009,7 +987,7 @@ function button_loadfolder_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%get(handles.edit_path,'string')
+
 handles.konyvtar=[get(handles.edit_path,'string') get(handles.text_dir,'string') '\'];
 
 lastpath=get(handles.edit_path,'string');

@@ -1,26 +1,18 @@
 function [P3,P3_2]=ficedula_csoportositas_abratabla3(data,sylls,row)
-%clear
-%clc
-%sylls=1:10;
-%load data
-%load matrix
 
 data=data(sylls);
-%matrix=matrix(sylls,:);
 
-%row=2;
+
 [u1, u2, u3]=unique([data.rows]);
-%if u1>2
-%specrow=max(u1);
-%end
+
 specrow=data(1).rows(1);
 
 syllnum=length(data);
 n=0;
 P0=[];
 n1=0;
-P3=[];%zeros(specrow*row,50);
-P3_2=[];%zeros(specrow*row,50);
+P3=[];
+P3_2=[];
 while n<syllnum
    
     clear P2

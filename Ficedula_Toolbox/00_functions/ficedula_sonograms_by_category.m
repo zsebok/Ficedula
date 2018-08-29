@@ -1,9 +1,7 @@
 function ficedula_sonograms_by_category(path_songs,path_data)
-% initialization
-%clear
+
 warning off
-%path_songs='song_library\';
-%path_data='data_folder\';
+
 
 mkdir([path_data 'sonograms\by category\'])
 
@@ -23,8 +21,7 @@ for ind1=inds'
     cats_ok=find(~isnan(cats_all));
     cats_missing=find(isnan(cats_all));
     [cats]=unique(cats_all(cats_ok));
-    
-    %sylls_n=0;
+ 
     clear sylls; clear sylls_name
     for cat1=cats
         v=find(cats_all==cat1);
@@ -67,7 +64,7 @@ for ind1=inds'
             else
                 sylls_n_index=sylls_n_index+syll_perpage;
             end
-            %  close all
+       
             
             fig=figure('units','normalized','position',[0.1,0.1,0.7,0.8]);
             
@@ -92,6 +89,6 @@ for ind1=inds'
             print(fig,'-djpeg','-r300',[path_data 'sonograms\by category\' ind1{1} '_cat' num2str(cat1) '_page' num2str(page_index) '.jpg'])
             try;close(fig);end
         end
-        %save
+      
     end
 end

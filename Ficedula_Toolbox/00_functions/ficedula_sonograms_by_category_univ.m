@@ -1,32 +1,9 @@
 function ficedula_sonograms_by_category_univ(path_songs,path_data)
-% initialization
-%clear
-warning off
-%path_songs='song_library\';
-%path_data='data_folder\';
 
-%mkdir([path_data 'sonograms\by univ category\'])
+warning off
 
 load([path_data 'results_categorized_univ.mat'])
 data0=results_categorized_univ;
-
-% initialization
-%clear
-%warning off
-%path_songs='song_library\';
-%path_data='data_folder\';
-%clear
-%warning off
-%path_songs='f:\_flycatcher\_flycatcher_songs2\';
-%path_data='';
-
-%mkdir([path_data 'sonograms\by category_allind\'])
-
-%load([path_data 'results_categorized.mat'])
-%load univ1
-%data5=data0;
-%[s,si]=sort(data5(:,2));data5=data5(si,:);
-%data0=data5;
 
 
 %%
@@ -35,10 +12,10 @@ cats_all=[data0{:,end}];
 
 [cats]=unique(cats_all);
 
-%sylls_n=0;
+
 clear sylls; clear sylls_name
 for cat1=cats
-    %cat1
+
     v=find(cats_all==cat1);
     
     data2=ficedula_csoportositas_meresossz4(v,path_songs,data0);
@@ -108,11 +85,11 @@ for cat1=cats
             
         end
         set(fig,'PaperPositionMode','auto');
-        %mkdir([path_data 'sonograms\by category\' ind1{1}])
+        
         print(fig,'-djpeg','-r300',[path_data 'sonograms\by univ category\cat'  sprintf('%04d',(cat1)) '_page' sprintf('%02d',(page_index)) '.jpg'])
         try;close(fig);end
     end
-    %save
+  
 end
-%end
+
 

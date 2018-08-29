@@ -1,11 +1,8 @@
 function [data,matrix]=csoportositas_meresossz5(ind1,path_songs,path_data)
 
-%adatbázisból másolja a matrix-ban található mérési eredményeket!
-
 col_start=5;
 col_end=6;
-%col_minf=8;
-%col_maxf=9;
+
 cols_measurements_start=9;
 if ~strcmp(ind1,'universal')
 load([path_data 'database_syllables_measured.mat'])
@@ -17,9 +14,9 @@ else
     v=1:size(database_syllables,1);
 end
 
-%v=1:size(database_syllables,1);
+
 n=0;
-%v
+
 for syll=1:length(v)
     syll
     
@@ -42,7 +39,7 @@ for syll=1:length(v)
     data(n).filename=ind1;
     data(n).syll=syll;
     data(n).Fs=Fs;
-    %data(n).row=length(data1.F);
+
     data(n).rows=length(data1.F);
     matrix(n,:)=[db{cols_measurements_start:end}];
     

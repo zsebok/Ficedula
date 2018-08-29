@@ -68,7 +68,7 @@ else
     handles.path_data='';
 end
 warning off
-handles.mutato=0; %kezdo file sorszáma
+handles.mutato=0; 
 handles.xj1=[];
 handles.xj2=[];
 
@@ -90,9 +90,6 @@ catch
 end
 
 set(handles.figure1,'CloseRequestFcn',@myclosefcn)
-%
-% main.fig=figure('units','normalized','position',[0 0 1 1],'Name','Flycatcher Syllable Clustering',...
-%             'menubar','none','Numbertitle','off','CloseRequestFcn',@myclosefcn,'KeyPressFcn', @keyPress);
 
 
 guidata(hObject, handles);
@@ -151,9 +148,6 @@ handles.filenev=filenev;
 
 handles.csakfilenev=csakfilenev;
 
-%%%%[handles.adat,Fs]=wavread(filenev);
-
-%[siz,Fs]=wavread(filenev,'size');
 info1=audioinfo(filenev);
 siz=info1.TotalSamples;
 
@@ -161,25 +155,23 @@ handles.adatsize=siz(1);
 n1=floor(linspace(1,siz(1),1000));
 n1l=n1(2)-n1(1);
 y=[];
-%tic
+
 for i=n1(1:end-1)
     [y1,Fs]=audioread(filenev,[i i+n1l]);
     y=[y;max(y1);min(y1)];
 end
-%toc
-handles.adatrajz=y;
-%plot(y)
 
-%% checking for stereo
+handles.adatrajz=y;
+
+
+%% checking for stereo - for stereo recordings it should be edited
 %if size(handles.adat,2)>1
 %    handles.adat=handles.adat(:,1);
 %end
 handles.leptek=(n1(2)-n1(1))/2;
 %% normalizing
 
-
 %handles.adat=adat;
-
 %b=1:handles.leptek:length(handles.adat);
 %handles.adatrajz=handles.adat(b);
 
@@ -201,7 +193,7 @@ guidata(hObject, handles);
 
 
 
-%% ha van már az adatbázisban, betöltjük
+%% if it is in the database load it
 
 try
     load([handles.path_data 'results_songcut.mat'])
@@ -231,13 +223,12 @@ handles.subplot3=subplot('position',[0.070 0.07 0.820 0.15]);
 
 kezdorajz(hObject,eventdata,handles)
 handles = guidata(hObject);
-%handles.adat
+
 jelolesekfelvitele(hObject, eventdata, handles)
 handles = guidata(hObject);
 
 'recording is loaded'
-% 
-% %adat=handles.adat;
+
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -262,7 +253,6 @@ function playbutton_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-%adat=handles.adat;
 Fs=handles.Fs;
 
 handles.player=audioplayer(handles.adat,handles.Fs);
@@ -310,7 +300,7 @@ stop(handles.player);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
 
-%adat=handles.adat;
+
 
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
@@ -404,7 +394,7 @@ stop(handles.player);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
 
-%adat=handles.adat;
+
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -477,7 +467,7 @@ if length(handles.xj1)>0
             y1=handles.yj1(i);
             y2=handles.yj2(i);
             plot([x1 x1],[y1 y2],'k-','Linewidth',2)
-           % plot([x2 x2],[y1 y2],'k-','Linewidth',2)
+           
             plot([x1 x2],[y1 y1],'k-','Linewidth',2)
             plot([x2 x1],[y2 y2],'k-','Linewidth',2)
          end
@@ -488,7 +478,7 @@ if length(handles.xj1)>0
             
             y1=handles.yj1(i);
             y2=handles.yj2(i);
-           % plot([x1 x1],[y1 y2],'k-','Linewidth',2)
+           
             plot([x2 x2],[y1 y2],'k-','Linewidth',2)
             plot([x1 x2],[y1 y1],'k-','Linewidth',2)
             plot([x2 x1],[y2 y2],'k-','Linewidth',2)
@@ -577,27 +567,6 @@ function pushbutton9_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in auto1button.
-% % % function auto1button_Callback(hObject, eventdata, handles)
-% % % % hObject    handle to auto1button (see GCBO)
-% % % % eventdata  reserved - to be defined in a future version of MATLAB
-% % % % handles    structure with handles and user data (see GUIDATA)
-% % % %adat=handles.adat;
-% % % 
-% % % lepes=1000;
-% % % tic
-% % % for i=1:lepes:length(handles.adat)-lepes
-% % %     
-% % %     c(i)=(sum(abs(adat(i:i+lepes-1))))^2;
-% % %     
-% % % end
-% % % figure;
-% % % plot(c)
-% % % toc
-% % % 
-
-
-
 
 % --- Executes on button press in filehatra.
 function filehatra_Callback(hObject, eventdata, handles)
@@ -678,7 +647,7 @@ guidata(hObject, handles);
 
 function kezdorajz(hObject,eventdata,handles)
 
-%handles = guidata(hObject);
+
 x1=floor(handles.x1);
 x2=floor(handles.x2);
 
@@ -692,11 +661,8 @@ subplot(handles.subplot1);
 
 
 %% spectrogram
-%adat001=handles.adat(x1:x2);
-%[b,a]= butter(3,2000*2/handles.Fs,'high');
-%adat002=filter(b,a,adat001);
-adat002=handles.adat;
 
+adat002=handles.adat;
 
 specgram(adat002,handles.spec_fft,handles.Fs,handles.spec_window,handles.spec_overlap); %xlim([x1 x2])
 
@@ -710,18 +676,13 @@ while nl>10
     probavektor=0:kezdoertek:(x2-x1)/handles.Fs;
     nl=length(probavektor);
 end
-%nl
+
  xtick1=0:kezdoertek:(x2-x1)/handles.Fs;
  xticklabel1=floor(x1/handles.Fs*100)/100+(0:kezdoertek:(x2-x1)/handles.Fs);
-%xtick1
-%xticklabel1
-%%%%%%%%
-%set(gca,'xtick',0.001:1:(x2-x1)/handles.Fs)
-%set(gca,'xticklabel',floor(x1/handles.Fs*100)/100:1:x2/handles.Fs)
+
 set(gca,'xtick',xtick1)
 set(gca,'xticklabel',xticklabel1)
-%xtick1
-%xticklabel1
+
 
 set(gca,'ytick',0:1000:13000)
 set(gca,'yticklabel',(0:1000:13000))
@@ -757,16 +718,11 @@ end
 
  xtick1=(0:kezdoertek/handles.leptek:handles.adatsize);
  xticklabel1=(0:kezdoertek/handles.Fs:handles.adatsize/handles.Fs);
-%xtick1
-%xticklabel1
-%set(gca,'xtick',0.001:1:(x2-x1)/handles.Fs)
-%set(gca,'xticklabel',floor(x1/handles.Fs*100)/100:1:x2/handles.Fs)
-% 
-%get(gca,'xtick')
+
 
 set(gca,'xtick',xtick1)
 set(gca,'xticklabel',xticklabel1)
- %set(gca,'xticklabel',[0 100000])
+ 
 
 
 set(handles.text_number,'String',['Songs: ' num2str(length(handles.xj1))])
@@ -788,7 +744,7 @@ handles.x2=handles.x1+handles.timewindow*handles.Fs;
 guidata(hObject, handles);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
-%adat=handles.adat;
+
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -829,7 +785,7 @@ x2=handles.x2;
 guidata(hObject, handles);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
-%adat=handles.adat;
+
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -879,7 +835,7 @@ while but==1
         
         kezdorajz(hObject, eventdata, handles)
         handles = guidata(hObject);
-        %adat=handles.adat;
+  
         Fs=handles.Fs;
         handles.player=audioplayer(handles.adat,Fs);
         setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -925,9 +881,9 @@ function button_path_Callback(hObject, eventdata, handles)
 % hObject    handle to button_path (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-%'c:\_munka\enekek\'
 
-%get(handles.edit_path,'string')
+
+
 handles.konyvtar=get(handles.edit_path,'string');
 if ~(handles.konyvtar(end)=='\')
     handles.konyvtar=[handles.konyvtar '\'];
@@ -967,7 +923,7 @@ x2=handles.x2;
 guidata(hObject, handles);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
-%adat=handles.adat;
+
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -1032,7 +988,6 @@ stop(handles.player);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
 
-%adat=handles.adat;
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -1075,7 +1030,7 @@ stop(handles.player);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
 
-%adat=handles.adat;
+
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -1118,7 +1073,7 @@ stop(handles.player);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
 
-%adat=handles.adat;
+
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -1161,7 +1116,7 @@ stop(handles.player);
 kezdorajz(hObject, eventdata, handles)
 handles = guidata(hObject);
 
-%adat=handles.adat;
+
 Fs=handles.Fs;
 handles.player=audioplayer(handles.adat,Fs);
 setappdata(hObject, 'theAudioPlayer', handles.player);
@@ -1190,4 +1145,4 @@ function checkbox_autoplay_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hint: get(hObject,'Value') returns toggle state of checkbox_autoplay
+

@@ -1,8 +1,8 @@
 clear
 load eredmeny
-%load indsfromexcel
+
 %%
-%for all syllable 1 line
+
 n=0;
 
 for song=1:length(eredmeny)
@@ -15,8 +15,7 @@ for song=1:length(eredmeny)
     songnum=s((vs(2)+1):(end-4));
     Fs=e.Fs;
     recID=s(1:(vs(2)-1));
-    %vind=find(strcmp(indsfromexcel(:,2),recID));
-    %indID=indsfromexcel{vind,1};
+   
     for j=1:length(e.x1)
        n=n+1;
        database_syllables(n,:)={s year ID songnum Fs e.x1(j) e.x2(j) 2000 20000 {} recID};

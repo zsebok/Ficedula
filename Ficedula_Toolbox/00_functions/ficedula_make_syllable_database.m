@@ -1,5 +1,5 @@
 function ficedula_make_syllable_database(path_data,resultsfilename)
-%clear
+
 load(resultsfilename)
 
 n=0;
@@ -14,7 +14,7 @@ for song=1:length(eredmeny)
     ID=s(1:(vs(end)-1));
     songnum=s((vs(end)+1):(end-4));
     Fs=e.Fs;
-    %recID=s(1:(vs(2)-1));
+   
 
     for syll=1:length(e.x1)
        n=n+1;

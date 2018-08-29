@@ -1,26 +1,20 @@
 function [data,matrix]=csoportositas_meresossz3b(ind1,path_songs,path_data)
 
-%adatbázisból másolja a matrix-ban található mérési eredményeket!
+
 
 col_start=5;
 col_end=6;
-%col_minf=8;
-%col_maxf=9;
+
 cols_measurements_start=9;
 
 load([path_data 'database_syllables_measured.mat'])
-%load database_syllables_MHC
-database_syllables=database_syllables_measured;
-%ind1
 
-% a=vertcat(database_syllables{:,2});
-% b=vertcat(database_syllables{}{:,3});
-% inds=cellstr([a repmat('_',length(a),1) b]);
+database_syllables=database_syllables_measured;
 
 v=find(strcmp(database_syllables(:,2),ind1));
-%v=1:size(database_syllables,1);
+
 n=0;
-%v
+
 for syll=1:length(v)
     syll
     
@@ -43,7 +37,7 @@ for syll=1:length(v)
     data(n).filename=ind1;
     data(n).syll=syll;
     data(n).Fs=Fs;
-    %data(n).row=length(data1.F);
+    
     data(n).rows=length(data1.F);
     matrix(n,:)=[db{cols_measurements_start:end}];
     

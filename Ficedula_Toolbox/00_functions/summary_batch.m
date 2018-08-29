@@ -31,13 +31,10 @@ set(gca, 'xticklabel','')
 figure
 
 for i=1:5
-%subplot(1,2,1)
+
 
     hold on
     plot(1:length(r(i).cats_num2),r(i).cats_num2,'.-','color',colors(i,:))
-%subplot(1,2,2)
-%hold on
-%    plot(1:length(r(i).cats_num2),cumsum(r(i).cats_num2),'.-','color',colors(i,:))
 
 
 end
@@ -49,10 +46,6 @@ ylabel('occurance')
 xlim([1 21])
 legend(pers,'location','SouthOutside','orientation','horizontal')
 title('distribution of category sizes')
-% 
-%     subplot(1,2,2)
-%     hold on
-%     plot(0:0.05:1,cumsum(t1)*100,'color',colors(i,:))
 
 
 
@@ -60,8 +53,7 @@ title('distribution of category sizes')
 figure
 table1=[];
 for i=1:5
-    %hold on
-    %plot(1:length(r(i).vers_num2),r(i).vers_num2,'.-','color',colors(i,:))
+    
     table1=[table1; r(i).vers' repmat(i,length(r(i).vers),1)];
     
 end
@@ -73,21 +65,18 @@ title('versatility (medians and percentils)')
 ylabel('number of syllable categories inside the songs')
 
 %% parameter distribution
-%r.coef_var
-%figure
 
 table2=[];
 for i=1:4
-    %hold on
-    %plot(1:length(r(i).vers_num2),r(i).vers_num2,'.-','color',colors(i,:))
+    
     table2=[table2; r(i).coef_var repmat(i,size(r(i).coef_var,1),1)];
     
 end
-%return
+
 boxplot(table2(:,5),table2(:,6))
 set(gca,'xtick',1:4)
 set(gca,'xticklabel',pers)
-%grid on
+
 title('versatility (medians and percentils)')
 ylabel('number of syllable categories inside the songs')
 
@@ -108,7 +97,7 @@ for i=1:5
     ylabel('occurance in percent')
     
     grid on
-    %return
+
     subplot(1,2,2)
     hold on
     plot(0:0.05:1,cumsum(t1)*100,'color',colors(i,:))
@@ -117,7 +106,7 @@ for i=1:5
     xlabel('range of relative duration')
     ylabel('cummulative occurance in percent')
     grid on
-% legend(pers,'location','SouthOutside','orientation','horizontal')
+
 end
 subplot(1,2,1)
 hold on
@@ -130,7 +119,7 @@ legend(pers,'location','SouthOutside','orientation','horizontal')
 
 %%% f-mean-range
 
-%close all
+
 figure
 for i=1:5
     t1=histc(r(i).range_rel(:,2),0:0.05:1);
@@ -145,7 +134,7 @@ for i=1:5
     ylabel('occurance in percent')
     
     grid on
-    %return
+
     subplot(1,2,2)
     hold on
     plot(0:0.05:1,cumsum(t1)*100,'color',colors(i,:))

@@ -1,9 +1,7 @@
 function ficedula_sonograms_by_recording(path_songs,path_data)
-% initialization
-%clear
+
 warning off
-%path_songs='song_library\';
-%path_data='data_folder\';
+
 
 mkdir([path_data 'sonograms\by recording\'])
  
@@ -86,6 +84,6 @@ for ind1=inds'
   print(fig,'-djpeg','-r300',[path_data 'sonograms\by recording\' ind1{1} '_page' num2str(page_index) '.jpg'])
     try;close(fig);end
     end
-    %save
+
    
 end
