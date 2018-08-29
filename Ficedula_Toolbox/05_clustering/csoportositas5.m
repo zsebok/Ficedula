@@ -58,7 +58,8 @@ set(main.edit_path_songs,'string',main.path_songs)
     function buildfig
         main.fig=figure('units','normalized','position',[0 0 1 1],'Name','Flycatcher Syllable Clustering',...
             'menubar','none','Numbertitle','off','CloseRequestFcn',@myclosefcn,'KeyPressFcn', @keyPress);
-       if strcmp(inds{1},'universal')
+        set(main.fig,'colormap',jet)
+        if strcmp(inds{1},'universal')
                 set(main.fig,'Name','Flycatcher Syllable Group Clustering')
        end        
         %%% decoration %%%
@@ -406,6 +407,7 @@ set(main.edit_path_songs,'string',main.path_songs)
         set(main.h,'HitTest','off')
         set(main.al1,'ButtonDownFcn',@al1_down,'xtick',[],'ytick',[],'color',main.backcolor);
         set(main.al1,'xlim',[0 500])
+        
     end
 
     function draw_ar2(sylls)
@@ -595,7 +597,6 @@ set(main.edit_path_songs,'string',main.path_songs)
             main.al1_selected=[];
             cla(main.ac2)
             set(main.text_ac2,'string','Actual syllable:');
-            
             
           
             %rajzolás - ac1-t frissíteni
